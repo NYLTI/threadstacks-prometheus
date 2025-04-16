@@ -30,11 +30,6 @@ scrape_configs:
     static_configs:
       - targets: ['threadstacksrooms-944873163031.us-south1.run.app']
 
-  - job_name: 'threadstacks-interaction-service'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['threadstacksinteraction-944873163031.us-south1.run.app']
-
   - job_name: 'threadstacks-gateway'
     scrape_interval: 5s
     static_configs:
