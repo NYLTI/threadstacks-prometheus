@@ -1,5 +1,6 @@
 global:
   scrape_interval: 15s
+
   external_labels:
     monitor: 'railway-prom'
 
@@ -8,6 +9,11 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9090']
+
+  - job_name: 'demo_application'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['demo.do.prometheus.io:9090']
 
   - job_name: 'threadstacks-user-service'
     scrape_interval: 5s
@@ -18,64 +24,38 @@ scrape_configs:
     static_configs:
       - targets: ['threadstackuserservice-944873163031.us-south1.run.app']
 
-# global:
-#   scrape_interval: 15s
+  - job_name: 'threadstacks-thread-service'
+    scrape_interval: 5s
+    metrics_path: /actuator/prometheus
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    static_configs:
+      - targets: ['threadstacksthreads-944873163031.us-central1.run.app']
 
-#   external_labels:
-#     monitor: 'railway-prom'
+  - job_name: 'threadstacks-room-service'
+    scrape_interval: 5s
+    metrics_path: /actuator/prometheus
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    static_configs:
+      - targets: ['threadstacksrooms-944873163031.us-south1.run.app']
 
-# scrape_configs:
-#   - job_name: 'prometheus'
-#     scrape_interval: 5s
-#     static_configs:
-#       - targets: ['localhost:9090']
+  - job_name: 'threadstacks-interaction-service'
+    scrape_interval: 5s
+    metrics_path: /actuator/prometheus
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    static_configs:
+      - targets: ['threadstacksinteraction-944873163031.us-south1.run.app']
 
-#   - job_name: 'demo_application'
-#     scrape_interval: 5s
-#     static_configs:
-#       - targets: ['demo.do.prometheus.io:9090']
-
-#   - job_name: 'threadstacks-user-service'
-#     scrape_interval: 5s
-#     metrics_path: /actuator/prometheus
-#     scheme: https
-#     tls_config:
-#       insecure_skip_verify: true
-#     static_configs:
-#       - targets: ['threadstackuserservice-944873163031.us-south1.run.app']
-
-#   - job_name: 'threadstacks-thread-service'
-#     scrape_interval: 5s
-#     metrics_path: /actuator/prometheus
-#     scheme: https
-#     tls_config:
-#       insecure_skip_verify: true
-#     static_configs:
-#       - targets: ['threadstacksthreads-944873163031.us-central1.run.app']
-
-#   - job_name: 'threadstacks-room-service'
-#     scrape_interval: 5s
-#     metrics_path: /actuator/prometheus
-#     scheme: https
-#     tls_config:
-#       insecure_skip_verify: true
-#     static_configs:
-#       - targets: ['threadstacksrooms-944873163031.us-south1.run.app']
-
-#   - job_name: 'threadstacks-interaction-service'
-#     scrape_interval: 5s
-#     metrics_path: /actuator/prometheus
-#     scheme: https
-#     tls_config:
-#       insecure_skip_verify: true
-#     static_configs:
-#       - targets: ['threadstacksinteraction-944873163031.us-south1.run.app']
-
-#   - job_name: 'threadstacks-gateway'
-#     scrape_interval: 5s
-#     metrics_path: /actuator/prometheus
-#     scheme: https
-#     tls_config:
-#       insecure_skip_verify: true
-#     static_configs:
-#       - targets: ['threadstacksgateway-944873163031.us-south1.run.app']
+  - job_name: 'threadstacks-gateway'
+    scrape_interval: 5s
+    metrics_path: /actuator/prometheus
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    static_configs:
+      - targets: ['threadstacksgateway-944873163031.us-south1.run.app']
